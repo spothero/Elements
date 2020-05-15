@@ -12,8 +12,10 @@ let package = Package(
         // watchOS is unsupported due to the use of command line utilities
     ],
     products: [
+        .executable(name: "cobalt", targets: ["cobalt"]),
         .executable(name: "zinc", targets: ["zinc"]),
         .library(name: "CarbonFramework", targets: ["CarbonFramework"]),
+        .library(name: "CobaltFramework", targets: ["CobaltFramework"]),
         .library(name: "ZincFramework", targets: ["ZincFramework"]),
     ],
     dependencies: [
@@ -23,6 +25,13 @@ let package = Package(
     ],
     targets: [
         // Executable Product Targets
+        .target(
+            name: "cobalt",
+            dependencies: [
+                .target(name: "CobaltFramework"),
+            ],
+            path: "Sources/Executables/cobalt"
+        ),
         .target(
             name: "zinc",
             dependencies: [
@@ -35,6 +44,14 @@ let package = Package(
             name: "CarbonFramework",
             dependencies: [],
             path: "Sources/Libraries/CarbonFramework"
+        ),
+        .target(
+            name: "CobaltFramework",
+            dependencies: [
+                .target(name: "CarbonFramework"),
+                "ArgumentParser",
+            ],
+            path: "Sources/Libraries/CobaltFramework"
         ),
         .target(
             name: "ZincFramework",
@@ -50,6 +67,12 @@ let package = Package(
             name: "CarbonTests",
             dependencies: [
                 .target(name: "CarbonFramework"),
+            ]
+        ),
+        .testTarget(
+            name: "CobaltTests",
+            dependencies: [
+                .target(name: "CobaltFramework"),
             ]
         ),
         .testTarget(

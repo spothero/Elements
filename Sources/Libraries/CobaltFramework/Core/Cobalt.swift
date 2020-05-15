@@ -1,19 +1,21 @@
 // Copyright © 2020 SpotHero, Inc. All rights reserved.
 
 import ArgumentParser
+import CarbonFramework
 
-public struct Zinc: ParsableCommand {
+public struct Cobalt: ParsableCommand {
     // MARK: Command Configuration
     
     public static var configuration = CommandConfiguration(
-        commandName: "zinc",
-        abstract: "Zinc is a command-line tool for keeping local files in sync with files hosted outside of your folder or repository.",
+        commandName: "cobalt",
+        abstract: "Cobalt helps with evaluating and launching Xcode simulators for a specific project.",
         shouldDisplay: false,
         subcommands: [
-            LintSubcommand.self,
-            SyncSubcommand.self,
+            CleanSubcommand.self,
+            LaunchSubcommand.self,
+            ListSubcommand.self,
         ],
-        defaultSubcommand: SyncSubcommand.self,
+        defaultSubcommand: LaunchSubcommand.self,
         helpNames: .long
     )
     
