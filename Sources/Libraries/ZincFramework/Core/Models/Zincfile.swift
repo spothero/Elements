@@ -12,6 +12,7 @@ public struct Zincfile: Codable {
         case source
         case sourceBranch = "source_branch"
         case sourceTag = "source_tag"
+        case tools
         case variables
     }
     
@@ -21,6 +22,7 @@ public struct Zincfile: Codable {
     public let source: String
     public let sourceBranch: String?
     public let sourceTag: String?
+    public let tools: [Tool]
     public let variables: YamlDictionary
     
     // MARK: Methods
@@ -32,6 +34,7 @@ public struct Zincfile: Codable {
         self.source = try container.decodeIfPresent(String.self, forKey: .source) ?? ""
         self.sourceBranch = try container.decodeIfPresent(String.self, forKey: .sourceBranch) ?? ""
         self.sourceTag = try container.decodeIfPresent(String.self, forKey: .sourceTag) ?? ""
+        self.tools = try container.decodeIfPresent([Tool].self, forKey: .tools) ?? []
         self.variables = try container.decodeIfPresent(YamlDictionary.self, forKey: .variables) ?? [:]
     }
 }

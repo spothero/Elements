@@ -1,5 +1,16 @@
 ---
 source: https://github.com/spothero/Shared-iOS.git
+tools:
+  - command: brew
+    version: 2.2.15
+  - command: mint
+    version: 0.14.2
+  - command: ruby
+    version: 2.6.3
+  - command: rvm
+    version: 1.29.9
+  - command: swift
+    version: 5.2.2
 files:
   # GitHub
   - source_path: Tools/GitHub/CODEOWNERS
